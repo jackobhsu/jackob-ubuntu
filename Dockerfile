@@ -7,6 +7,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN echo exit 101 > /usr/sbin/policy-rc.d && \
   chmod +x /usr/sbin/policy-rc.d
 RUN apt-get -y update 
+
+# chinese language fixed 
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8 
 RUN echo -e 'LANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8' > /etc/default/locale
@@ -16,6 +18,7 @@ RUN apt-get -y install --reinstall locales
 RUN apt-get -y install language-pack-zh-hant-base
 RUN apt-get -y install language-pack-zh-hans-base
 
+# set timedata for taipei
 RUN cp -vf /usr/share/zoneinfo/Asia/Taipei /etc/localtime
 RUN echo Asia/Taipei | tee /etc/timezone
 
